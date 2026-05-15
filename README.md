@@ -18,8 +18,8 @@ Meanwhile, the compiled output files will be generated in the 'bin' folder by de
 ### Basic Functionality: If one opens the window, there are 12 articles prepared for the default setting.
 
 [Below is an Initial Screen.]
-<img width="1222" height="606" alt="image" src="https://github.com/user-attachments/assets/4b7d2a35-1162-40cb-ac1b-2592c18de288" />
+<img width="1152" height="906" alt="image" src="https://github.com/user-attachments/assets/559e30a3-3c66-43a2-9c90-c5af60aaabb1" />
 [All Fortunes]
-<img width="1227" height="617" alt="image" src="https://github.com/user-attachments/assets/17fb9d84-b7a0-4fe6-afac-8907b6deaaa0" />
+<img width="1115" height="867" alt="image" src="https://github.com/user-attachments/assets/4104c445-d17e-43c6-a4f0-ef368b5d913c" />
 [If you choose the "Random Fortune", the one sentence is selected at random and displayed on the right side in a big blank.]
-<img width="1227" height="613" alt="image" src="https://github.com/user-attachments/assets/2cfb6c07-d65f-46fd-8e34-1bdb99641533" />
+<img width="1136" height="892" alt="image" src="https://github.com/user-attachments/assets/273d4105-6321-46a4-9a68-fa04fddb7286" />
