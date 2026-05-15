@@ -2,8 +2,8 @@ import java.awt.*;
 import javax.swing.*;
 
 /* 
-Description: This is a Fortune Teller application, and this code
-designs the layout of the pop-up window.
+Description: This is a Fortune Teller application and this code
+designs the layout of the popup window.
 
 @author: Yushi Kawashima
 @author: Han Yardimic
@@ -28,7 +28,7 @@ public class FortuneApp {
         
         // Popup window's design (Scale, Title, and Exit option)
 
-        frame = new JFrame("Fortune Teller");
+        frame = new JFrame("Welcome to Fortune Teller");
 
         frame.setSize(900, 700);
 
@@ -61,13 +61,9 @@ public class FortuneApp {
         // Central Text Area
 
         outputArea = new JTextArea();
-
         outputArea.setFont(new Font("Monospaced", Font.PLAIN, 18));
-
         outputArea.setEditable(false);
-
         outputArea.setLineWrap(true);
-
         outputArea.setWrapStyleWord(true);
 
         JScrollPane scrollPane =
@@ -92,7 +88,6 @@ public class FortuneApp {
         // Text Field
 
         JTextField addField = new JTextField();
-
         JTextField removeField = new JTextField();
 
         // Layout of all buttons
@@ -113,7 +108,6 @@ public class FortuneApp {
                 BorderLayout.WEST);
 
         addPanel.add(addField, BorderLayout.CENTER);
-
         addPanel.add(addBtn, BorderLayout.EAST);
 
         // Remove Fortune Option
@@ -143,11 +137,8 @@ public class FortuneApp {
                         10, 10, 10, 10));
 
         bottomPanel.add(topButtons);
-
         bottomPanel.add(addPanel);
-
         bottomPanel.add(removePanel);
-
         frame.add(bottomPanel, BorderLayout.SOUTH);
 
         // All Option's connection between App and Manager code
@@ -177,7 +168,7 @@ public class FortuneApp {
                 manager.addFortune(text);
 
                 outputArea.setText(
-                        "Fortune added successfully!");
+                        "Fortune has been added");
 
                 addField.setText("");
 
@@ -201,9 +192,7 @@ public class FortuneApp {
                                 removeField.getText().trim());
 
                 manager.removeFortune(index);
-
-                outputArea.setText("Fortune removed successfully!");
-
+                outputArea.setText("Fortune has been removed");
                 removeField.setText("");
 
             } catch (Exception ex) {
@@ -219,7 +208,6 @@ public class FortuneApp {
         // Showing the window
 
         frame.setLocationRelativeTo(null);
-
         frame.setVisible(true);
     }
 
