@@ -65,7 +65,7 @@ public class FortuneManager {
         return sb.toString();
     }
 
-    // Add the option of Fortune
+    // Add option of Fortune
 
     public void addFortune(String text) {
 
