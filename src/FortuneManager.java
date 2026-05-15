@@ -26,9 +26,14 @@ public class FortuneManager {
         // Default types of Fortunes
         fortunes.add("You will have a great day!");
         fortunes.add("Success is coming your way.");
-        fortunes.add("A new opportunity will appear soon.");
-        fortunes.add("Happiness will find you.");
-        fortunes.add("Good luck is in your future.");
+        fortunes.add("Be patient, good things take time.");
+        fortunes.add("An eciting oppotunity awaits you.");
+        fortunes.add("Happiness begins with you.");
+        fortunes.add("A pleasant suprise is in store.");
+        fortunes.add("Hard work will pay off soon.");
+        fortunes.add("Except good news in the near future.");
+        fortunes.add("You will achieve your goals.");
+        fortunes.add("Adventure is around the corner.")
     }
 
     // Random choice of Fortune
