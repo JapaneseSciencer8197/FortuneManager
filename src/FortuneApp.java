@@ -28,7 +28,7 @@ public class FortuneApp {
         
         // Popup window's design (Scale, Title, and Exit option)
 
-        frame = new JFrame("Welcome to Fortune Teller");
+        frame = new JFrame("Fortune Teller");
 
         frame.setSize(900, 700);
 
@@ -41,7 +41,7 @@ public class FortuneApp {
 
         JPanel topPanel = new JPanel(new GridLayout(2, 1));
 
-        JLabel title = new JLabel("Fortune Teller App",JLabel.CENTER);
+        JLabel title = new JLabel("Welcome to Fortune Teller",JLabel.CENTER);
 
         title.setFont(new Font("Arial", Font.BOLD, 28));
 
