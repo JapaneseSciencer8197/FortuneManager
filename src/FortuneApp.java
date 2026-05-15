@@ -1,106 +1,233 @@
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.awt.*;
+import javax.swing.*;
 
-/**
- * Main application class that handles user interaction.
- */
+/* 
+Description: This is a Fortune Teller application, and this code
+designs the layout of the pop-up window.
+
+@author: Yushi Kawashima
+@author: Han Yardimic
+@since: 5/10/26
+*/
+
 public class FortuneApp {
 
-    /**
-     * Displays the menu options.
-     */
-    public static void displayMenu() {
-        System.out.println("\n----- Fortune Teller ----- ");
-        System.out.println("1. Generate Random Fortune");
-        System.out.println("2. Additional Fortune");
-        System.out.println("3. Removing an opsion of Fortune ");
-        System.out.println("4. Showing all Fortunes");
-        System.out.println("5. Exit");
-        System.out.print("Choose an option: ");
-    }
+    private JFrame frame;
+    private JTextArea outputArea;
 
-    /**
-     * Main method to run the program.
-     * 
-     * @param args command-line arguments
-     */
-    public static void main(String[] args) {
+    // Fortune manager
+    private FortuneManager manager;
 
-        Scanner scanner = new Scanner(System.in);
-        FortuneManager manager = new FortuneManager();
+    public FortuneApp() {
 
-        boolean running = true;
+        
+        // Manager
 
-        System.out.println("Welcome to the Fortune Teller!!");
-        System.out.println("Please choose the option from below 5");
+        manager = new FortuneManager();
 
-        while (running) {
-            displayMenu(); 
+        
+        // Popup window's design (Scale, Title, and Exit option)
+
+        frame = new JFrame("Fortune Teller");
+
+        frame.setSize(900, 700);
+
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        frame.setLayout(new BorderLayout(10, 10));
+
+        
+        // 
+
+        JPanel topPanel = new JPanel(new GridLayout(2, 1));
+
+        JLabel title = new JLabel("Fortune Teller App",JLabel.CENTER);
+
+        title.setFont(new Font("Arial", Font.BOLD, 28));
+
+        title.setForeground(Color.BLACK);
+
+        JLabel instructions = new JLabel(
+                "Use the buttons below to get a fortune, add, or remove fortunes.",JLabel.CENTER);
+
+        instructions.setFont(new Font("Arial", Font.PLAIN, 16));
+
+        topPanel.add(title);
+        topPanel.add(instructions);
+
+        frame.add(topPanel, BorderLayout.NORTH);
+
+        
+        // Central Text Area
+
+        outputArea = new JTextArea();
+
+        outputArea.setFont(new Font("Monospaced", Font.PLAIN, 18));
+
+        outputArea.setEditable(false);
+
+        outputArea.setLineWrap(true);
+
+        outputArea.setWrapStyleWord(true);
+
+        JScrollPane scrollPane =
+                new JScrollPane(outputArea);
+
+        frame.add(scrollPane, BorderLayout.CENTER);
+
+        // 4 button to select option. ( Random, Show all Fortune, Add, or Remove Fortune)
+
+        JButton randomBtn =
+                new JButton("Get Random Fortune");
+
+        JButton showBtn =
+                new JButton("Show All Fortunes");
+
+        JButton addBtn =
+                new JButton("Add Fortune");
+
+        JButton removeBtn =
+                new JButton("Remove Fortune");
+
+        // Text Field
+
+        JTextField addField = new JTextField();
+
+        JTextField removeField = new JTextField();
+
+        // Layout of all buttons
+
+        JPanel topButtons =
+                new JPanel(new GridLayout(1, 2, 10, 0));
+
+        topButtons.add(randomBtn);
+        topButtons.add(showBtn);
+
+        // Add Fortune Option
+
+        JPanel addPanel =
+                new JPanel(new BorderLayout(10, 0));
+
+        addPanel.add(
+                new JLabel("New Fortune:"),
+                BorderLayout.WEST);
+
+        addPanel.add(addField, BorderLayout.CENTER);
+
+        addPanel.add(addBtn, BorderLayout.EAST);
+
+        // Remove Fortune Option
+
+        JPanel removePanel =
+                new JPanel(new BorderLayout(10, 0));
+
+        removePanel.add(
+                new JLabel("Remove Index:"),
+                BorderLayout.WEST);
+
+        removePanel.add(removeField,
+                BorderLayout.CENTER);
+
+        removePanel.add(removeBtn,
+                BorderLayout.EAST);
+
+        // In the Bottom
+
+        JPanel bottomPanel = new JPanel();
+
+        bottomPanel.setLayout(
+                new GridLayout(3, 1, 0, 10));
+
+        bottomPanel.setBorder(
+                BorderFactory.createEmptyBorder(
+                        10, 10, 10, 10));
+
+        bottomPanel.add(topButtons);
+
+        bottomPanel.add(addPanel);
+
+        bottomPanel.add(removePanel);
+
+        frame.add(bottomPanel, BorderLayout.SOUTH);
+
+        // All Option's connection between App and Manager code
+
+        // Random Fortune Option
+        randomBtn.addActionListener(e -> {
+
+            outputArea.setText(
+                    manager.getRandomFortune());
+        });
+
+        // Show All Fortunes
+        showBtn.addActionListener(e -> {
+
+            outputArea.setText(
+                    manager.getAllFortunes());
+        });
+
+        // Add Fortune Option
+        addBtn.addActionListener(e -> {
 
             try {
-                int choice = Integer.parseInt(scanner.nextLine());
 
-                switch (choice) {
+                String text =
+                        addField.getText().trim();
 
-                    case 1:
-                        System.out.println("Fortune: " + manager.getRandomFortune());
-                        break; // Showing the randam options 1-10
+                manager.addFortune(text);
 
-                    case 2:
-                        System.out.print("Type a new fortune: ");
-                        String newFortune = scanner.nextLine().trim();
+                outputArea.setText(
+                        "Fortune added successfully!");
 
-                        if (newFortune.isEmpty()) {
-                            throw new Exception("Error!!Please type the word at least one");
-                        } // If the box was not typed anything, show "Error message"
+                addField.setText("");
 
-                        manager.addFortune(newFortune);
-                        System.out.println("Fortune has been added!");
-                        break; 
+            } catch (Exception ex) {
 
-                    case 3:
-                        
-                        ArrayList<String> list = manager.getAllFortunes();
-
-                        System.out.println("\n--- All Fortunes ---");
-                        for (int i = 0; i < list.size(); i++) {
-                            System.out.println(i + ": " + list.get(i));
-                        }
-
-                        System.out.print("Enter index of fortune to remove: ");
-                        int index = Integer.parseInt(scanner.nextLine());
-
-                        manager.removeFortune(index);
-                        System.out.println("Fortune removed!");
-                        break;
-
-                    case 4:
-                        ArrayList<String> allFortunes = manager.getAllFortunes();
-
-                        System.out.println("\n--- All Fortunes ---");
-                        for (int i = 0; i < allFortunes.size(); i++) {
-                            System.out.println(i + ": " + allFortunes.get(i));
-                        }
-                        break;
-
-                    case 5:
-                        running = false;
-                        System.out.println("Thank you for using Furtune App!! Have a nice day!!");
-                        break;
-
-                    default:
-                        System.out.println("Invalid option. Please choose from 1 through 5 options.");
-                }
-
-            } catch (NumberFormatException e) {
-                System.out.println("Error: Please enter an appropriate number.");
-            } catch (IndexOutOfBoundsException e) {
-                System.out.println("Error: Invalid index.");
-            } catch (Exception e) {
-                System.out.println("Error: " + e.getMessage());
+                JOptionPane.showMessageDialog(
+                        frame,
+                        ex.getMessage(),
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
             }
-        }
+        });
 
-        scanner.close();
+        // Remove Fortune Option
+        removeBtn.addActionListener(e -> {
+
+            try {
+
+                int index =
+                        Integer.parseInt(
+                                removeField.getText().trim());
+
+                manager.removeFortune(index);
+
+                outputArea.setText("Fortune removed successfully!");
+
+                removeField.setText("");
+
+            } catch (Exception ex) {
+
+                JOptionPane.showMessageDialog(
+                        frame,
+                        ex.getMessage(),
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+        });
+
+        // Showing the window
+
+        frame.setLocationRelativeTo(null);
+
+        frame.setVisible(true);
+    }
+
+    public static void main(String[] args) {
+
+        SwingUtilities.invokeLater(() -> {
+
+            new FortuneApp();
+        });
     }
 }
