@@ -36,7 +36,7 @@ public class FortuneManager {
     public String getRandomFortune() {
 
         if (fortunes.isEmpty()) {
-            return "No fortunes available.";
+            return "Empty fortune.";
         }
 
         int index = random.nextInt(fortunes.size());
@@ -49,7 +49,7 @@ public class FortuneManager {
     public String getAllFortunes() {
 
         if (fortunes.isEmpty()) {
-            return "No fortunes available.";
+            return "Empty fortune.";
         }
 
         StringBuilder sb = new StringBuilder();
@@ -65,14 +65,13 @@ public class FortuneManager {
         return sb.toString();
     }
 
-    // Add option of Fortune
+    // Add the option of Fortune
 
     public void addFortune(String text) {
 
         if (text == null || text.isEmpty()) {
             throw new IllegalArgumentException(
-                    "Fortune text cannot be empty.");
-        }
+                    "Please write the sentence.");}
 
         fortunes.add(text);
     }
@@ -81,7 +80,7 @@ public class FortuneManager {
     public void removeFortune(String text) {
 
         if (index < 0 || index >= fortunes.size()) {
-            throw new IndexOutOfBoundsException( "Invalid fortune index.");
+            throw new IndexOutOfBoundsException( "Please choose the valuable number.");
         }
 
         fortunes.remove(index);
