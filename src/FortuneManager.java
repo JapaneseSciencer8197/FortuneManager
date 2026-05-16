@@ -15,6 +15,9 @@ import java.util.Random;
 
 public class FortuneManager {
 
+
+    
+
     private ArrayList<String> fortunes;
     private Random random;
 
