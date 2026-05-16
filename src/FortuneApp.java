@@ -12,6 +12,9 @@ designs the layout of the popup window.
 
 public class FortuneApp {
 
+
+    
+
     private JFrame frame;
     private JTextArea outputArea;
 
